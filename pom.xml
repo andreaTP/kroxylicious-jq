@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.andreatp</groupId>
+    <artifactId>kroxylicious-jq</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>Sample Jq based filter</name>
+    <description>Some exemplar Jq filter</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <jq4j.version>0.0.1</jq4j.version>
+        <kroxylicious.version>0.13.0</kroxylicious.version>
+
+        <junit.version>5.13.1</junit.version>
+        <log4j.version>2.21.1</log4j.version>
+        <mockito.version>5.18.0</mockito.version>
+        <assertj-core.version>3.27.3</assertj-core.version>
+        <mockito.version>5.18.0</mockito.version>
+        <kafka.version>4.0.0</kafka.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <kroxylicious-testing-junit5-extension.version>0.11.0</kroxylicious-testing-junit5-extension.version>
+        <micrometer-core.version>1.15.1</micrometer-core.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>io.roastedroot</groupId>
+            <artifactId>jq4j</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <!-- project dependencies - runtime and compile -->
+        <dependency>
+            <groupId>io.kroxylicious</groupId>
+            <artifactId>kroxylicious-api</artifactId>
+            <version>${kroxylicious.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>${micrometer-core.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- project dependencies - test -->
+        <dependency>
+            <groupId>io.kroxylicious</groupId>
+            <artifactId>kroxylicious-integration-test-support</artifactId>
+            <version>${kroxylicious.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.kroxylicious.testing</groupId>
+            <artifactId>testing-junit5-extension</artifactId>
+            <version>${kroxylicious-testing-junit5-extension.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.13</artifactId>
+            <version>${kafka.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.19.1</version>
+        </dependency>
+        <!-- third party dependencies - test -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <scope>test</scope>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+            <version>${assertj-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+            <version>${mockito.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+            <version>${mockito.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>${maven-surefire-plugin.version}</version>
+          </plugin>
+        </plugins>
+      </build>
+
+</project>

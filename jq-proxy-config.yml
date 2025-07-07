@@ -1,0 +1,20 @@
+adminHttp:
+  endpoints:
+    prometheus: {}
+virtualClusters:
+  demo:
+    targetCluster:
+      bootstrap_servers: localhost:9092
+    clusterNetworkAddressConfigProvider:
+      type: PortPerBrokerClusterNetworkAddressConfigProvider
+      config:
+        bootstrapAddress: localhost:9192
+    logNetwork: false
+    logFrames: false
+filters:
+  - type: JqProduceRequestFilterFactory
+    config:
+      replacerModule: .
+  - type: JqFetchResponseFilterFactory
+    config:
+      replacerModule: .realnames as $names | .posts[] | {title, author: $names[.author]}
