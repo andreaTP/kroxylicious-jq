@@ -16,9 +16,24 @@ Building the jq project is easy!
 mvn verify
 ```
 
+### Run with a Kroxylicious Distribution
+
+Build as above and then:
+
+1. docker run -d -p 9092:9092 apache/kafka-native:4.0.0
+2. obtain and unpack a [kroxylicious-app distribution](https://github.com/kroxylicious/kroxylicious/releases) (tested with 0.13.0):
+3. run the proxy:
+   ```shell
+   KROXYLICIOUS_DISTRIBUTION_DIR=~/Downloads/kroxylicious-app-0.13.0 # replace with your installation directory
+   export KROXYLICIOUS_CLASSPATH="$(pwd)/target/kroxylicious-jq-0.0.1-SNAPSHOT-bin/*"
+   ${KROXYLICIOUS_DISTRIBUTION_DIR}/bin/kroxylicious-start.sh --config ./jq-proxy-config.yml
+   ```
+
+Your proxy should now be running and ready to be connected to using bootstrap server `localhost:9192` from a kafka client.
+
 ### Configure
 
-Filters can be added and removed by altering the `filters` list in the `jq-proxy-config.yml` file. You can also reconfigure the filters by changing the configuration values in this file.
+Filters can be added and removed by altering the `filterDefinitions` and `defaultFilters` lists in the `jq-proxy-config.yml` file. You can also reconfigure the filters by changing the configuration values in this file.
 
 The **JqFetchResponseFilter** and **JqProduceRequestFilter** each have two configuration values that must be specified for them to work:
 
