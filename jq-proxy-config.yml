@@ -1,20 +1,25 @@
-adminHttp:
+management:
   endpoints:
     prometheus: {}
 virtualClusters:
-  demo:
+  - name: demo
     targetCluster:
-      bootstrap_servers: localhost:9092
-    clusterNetworkAddressConfigProvider:
-      type: PortPerBrokerClusterNetworkAddressConfigProvider
-      config:
+      bootstrapServers: localhost:9092
+    gateways:
+    - name: mygateway
+      portIdentifiesNode:
         bootstrapAddress: localhost:9192
     logNetwork: false
     logFrames: false
-filters:
-  - type: JqProduceRequestFilterFactory
+filterDefinitions:
+  - name: jq-produce
+    type: JqProduceRequestFilterFactory
     config:
-      replacerModule: .
-  - type: JqFetchResponseFilterFactory
+      jqFilter: .
+  - name: jq-fetch
+    type: JqFetchResponseFilterFactory
     config:
-      replacerModule: .realnames as $names | .posts[] | {title, author: $names[.author]}
+      jqFilter: '.realnames as $names | .posts[] | {title, author: $names[.author]}'
+defaultFilters:
+  - jq-produce
+  - jq-fetch
