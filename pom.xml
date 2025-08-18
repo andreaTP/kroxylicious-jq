@@ -24,9 +24,9 @@
 
         <junit.version>5.13.3</junit.version>
         <log4j.version>2.25.1</log4j.version>
-        <mockito.version>5.18.0</mockito.version>
+        <mockito.version>5.19.0</mockito.version>
         <assertj-core.version>3.27.3</assertj-core.version>
-        <mockito.version>5.18.0</mockito.version>
+        <mockito.version>5.19.0</mockito.version>
         <kafka.version>4.0.0</kafka.version>
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
         <kroxylicious-testing-junit5-extension.version>0.11.0</kroxylicious-testing-junit5-extension.version>
